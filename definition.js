@@ -178,7 +178,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
         }
     };
 
-    Blockly.JavaScript['yolobit_lora_create'] = function(block) {
+    Blockly.Python['yolobit_lora_create'] = function(block) {
         var tx = block.getFieldValue('tx');
         var rx = block.getFieldValue('rx');
         var address = block.getFieldValue('address');
