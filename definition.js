@@ -225,7 +225,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
         return code;
     };
 
-    Blockly.Blocks['yolobit_lora_send'] = {
+    Blockly.Blocks['yolobit_lora_receive'] = {
         init: function() {
             this.jsonInit(
                 {
@@ -260,15 +260,3 @@ Blockly.Blocks['yolobit_lora_create'] = {
         // TODO: Change ORDER_NONE to the correct strength.
         return [code, Blockly.Python.ORDER_NONE];
     };
-
-
-
-
-
-
-    
-    
-
-
-    
-
