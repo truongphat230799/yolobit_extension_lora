@@ -1,45 +1,18 @@
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-  <category name="LORA E32" colour="#6bfab0" icon="wireless">
+  <category name="GPS" colour="#006666" icon="map">
     <block type="yolobit_lora_create">
-        <value name="ADDRESS">
-            <shadow type="math_number">
-          <field name="NUM">0x</field>
-            </shadow>
-        </value>
-        <value name="CHANNEL">
-            <shadow type="math_number">
-            <field name="NUM">0x</field>
+      <value name="ADDRESS">
+        <shadow type="math_number">
+          <field name="NUM">0x0001</field>
         </shadow>
-        </value>
-    </block>
-    <block type="yolobit_lora_send">
-        <value name="MASSAGE">
-          <shadow type="text">
-          <field name="TEXT"></field>
-          </shadow>
-        </value>
-        <value name="ADDRESS">
-            <shadow type="math_number">
-          <field name="NUM">0x</field>
-            </shadow>
-        </value>
-        <value name="CHANNEL">
-            <shadow type="math_number">
-            <field name="NUM">0x</field>
+      </value>
+      <value name="CHANNEL">
+        <shadow type="math_number">
+          <field name="NUM">0x02</field>
         </shadow>
-        </value>
+      </value>
     </block>
-    <block type="yolobit_lora_receive">
-        <value name="ADDRESS">
-            <shadow type="math_number">
-          <field name="NUM">0x</field>
-            </shadow>
-        </value>
-        <value name="CHANNEL">
-            <shadow type="math_number">
-            <field name="NUM">0x</field>
-        </shadow>
-        </value>
-    </block>
+    <block type="yolobit_lora_send"/>
+    <block type="yolobit_lora_receive"/>
   </category>
 </xml>
