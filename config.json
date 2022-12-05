@@ -1,0 +1,13 @@
+{
+    "name": "LORA E32",
+    "description": "Mục mở rộng để làm việc với module Lora Ebyte E32",
+    "libs": [
+        "yolobit_lorae32.py"
+    ],
+    "blocks": [
+        "definition.js"
+    ],
+    "toolbox": "toolbox.xml",
+    "languages": {},
+    "poster": "poster.png"
+}
