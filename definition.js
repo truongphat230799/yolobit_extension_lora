@@ -154,14 +154,12 @@ Blockly.Blocks['yolobit_lora_create'] = {
                 ]
               },
               {
-                "type": "field_number",
+                "type": "input_value",
                 "name": "ADDRESS",
-                "value": 0
               },
               {
-                "type": "field_number",
+                "type": "input_value",
                 "name": "CHANNEL",
-                "value": 0
               }
             ],
             "previousStatement": null,
