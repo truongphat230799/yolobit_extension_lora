@@ -192,11 +192,12 @@ Blockly.Blocks['yolobit_lora_create'] = {
                   "message0": "gửi  %1 %2 đến address %2 channel %3",
                   "args0": [
                     {
-                      "type": "input_dummy"
+                      type: "input_dummy",
                     },
                     {
                       "type": "input_value",
-                      "name": "MESSAGE"
+                      "name": "MESSAGE",
+                      "text": "default"
                     },
                     {
                       "type": "field_number",
