@@ -206,14 +206,14 @@ Blockly.Blocks['yolobit_lora_create'] = {
                         "type": "input_dummy",
                       },
                       {
-                        "type": "field_number",
+                        "type": "input_value",
                         "name": "ADDRESS",
                       },
                       {
                         "type": "input_dummy",
                       },
                       {
-                        "type": "field_number",
+                        "type": "input_value",
                         "name": "CHANNEL",
                       }
                     ],
@@ -227,7 +227,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
                 }
     };
     Blockly.Python['yolobit_lora_send'] = function(block) {
-        var text_message = block.getFieldValue('message');
+        var msg = Blockly.Python.valueToCode(block, 'MESSAGE', Blockly.Python.ORDER_ATOMIC);
         var text_address = block.getFieldValue('address');
         var text_channel = block.getFieldValue('channel');
         // TODO: Assemble Python into code variable.
