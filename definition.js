@@ -192,21 +192,21 @@ Blockly.Blocks['yolobit_lora_create'] = {
                     "message0": "gửi  %1 %2 đến address %2 channel %3",
                     "args0": [
                         {
-                            type: "input_dummy",
+                            "type": "input_dummy",
                         },
                         {
-                            type: "input_value",
-                            name: "MESSAGE",
+                            "type": "input_value",
+                            "name": "MESSAGE",
                         },
                         {
-                        "type": "field_number",
-                        "name": "ADDRESS",
-                        "value": 0
+                            "type": "field_number",
+                            "name": "ADDRESS",
+                            "value": 0
                         },
                         {
-                        "type": "field_number",
-                        "name": "CHANNEL",
-                        "value": 0
+                            "type": "field_number",
+                            "name": "CHANNEL",
+                            "value": 0
                         }
                     ],
                     "previousStatement": null,
@@ -219,7 +219,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
                 }
     };
     Blockly.Python['yolobit_lora_send'] = function(block) {
-        var text_message = block.getFieldValue('message');
+        var msg = Blockly.Python.valueToCode(block, 'MESSAGE', Blockly.Python.ORDER_ATOMIC);
         var text_address = block.getFieldValue('address');
         var text_channel = block.getFieldValue('channel');
         // TODO: Assemble Python into code variable.
