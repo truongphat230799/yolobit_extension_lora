@@ -189,12 +189,14 @@ Blockly.Blocks['yolobit_lora_create'] = {
           this.jsonInit(
               {
                   "type": "yolobit_lora_send",
-                  "message0": "gửi  %1 đến address %2 channel %3",
+                  "message0": "gửi  %1 %2 đến address %2 channel %3",
                   "args0": [
                     {
-                      "type": "field_input",
-                      "name": "message",
-                      "text": "default"
+                      type: "input_dummy",
+                    },
+                    {
+                      "type": "input_value",
+                      "name": "MESSAGE",
                     },
                     {
                       "type": "field_number",
@@ -230,7 +232,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
           this.jsonInit(
               {
                   "type": "yolobit_lora_receive",
-                  "message0": "hiện thông tin nhận được từ address %1 channel %2",
+                  "message0": "thông tin nhận được từ address %1 channel %2",
                   "args0": [
                       {
                           "type": "field_number",
