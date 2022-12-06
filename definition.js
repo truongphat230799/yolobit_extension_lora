@@ -170,7 +170,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
             ],
             "previousStatement": null,
             "nextStatement": null,
-            "colour": "#6bfab0",
+            "colour": "#505170",
             "tooltip": "",
             "helpUrl": ""
           }
@@ -222,7 +222,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
                     ],
                     "previousStatement": null,
                     "nextStatement": null,
-                    "colour": "#6bfab0",
+                    "colour": "#505170",
                     "tooltip": "",
                     "helpUrl": ""
                   }
@@ -261,7 +261,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
                           }
                     ],
                     "output": null,
-                    "colour": "#6bfab0",
+                    "colour": "#505170",
                     "tooltip": "",
                     "helpUrl": ""
                   }
