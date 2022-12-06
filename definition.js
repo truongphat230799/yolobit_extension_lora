@@ -222,7 +222,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
         var to_address = block.getFieldValue('ADDRESS');
         var to_channel = block.getFieldValue('CHANNEL');
         // TODO: Assemble Python into code variable.
-        var code = "e32.sendMessage("+to_address+","+ to_channel+", { 'msg'" +":"+ message+"}, useChecksum=True)";
+        var code = "e32.sendMessage("+to_address+","+ to_channel+", { 'msg'" +":"+ message+"}, useChecksum=True)\n";
         return code;
     };
 
@@ -255,7 +255,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
         var from_address = block.getFieldValue('ADDRESS');
         var from_channel = block.getFieldValue('CHANNEL');
         // TODO: Assemble Python into code variable.
-        var code = 'e32.recvMessage(' +from_address + ',' + from_channel + ', useChecksum=True)';
+        var code = 'e32.recvMessage(' +from_address + ',' + from_channel + ', useChecksum=True)\n';
         // TODO: Change ORDER_NONE to the correct strength.
         return [code, Blockly.Python.ORDER_NONE];
     };
