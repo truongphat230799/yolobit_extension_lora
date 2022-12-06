@@ -133,7 +133,9 @@ class ebyteE32:
         self.config['txpower'] = 0                 # transmission power (default 0 = 20dBm/100mW)
         
         self.tx_pin = tx_pin
-        self.rx_pin = rx_pin                           # instance for AUX Pin (device status : 0=busy - 1=idle)
+        self.rx_pin = rx_pin                           
+        self.PinAUX = PinAUX                       # instance for AUX Pin (device status : 0=busy - 1=idle)
+        self.AUX = None 
         self.serdev = None                         # instance for UART
         self.debug = debug
         
@@ -164,6 +166,7 @@ class ebyteE32:
                 print(self.serdev)
             #print(self.M0, self.M1, self.AUX)
             # set config to the ebyte E32 LoRa module
+            self.AUX = Pin(self.PinAUX, Pin.IN, Pin.PULL_UP)
             self.setConfig('setConfigPwrDwnSave')
             return "OK"
         

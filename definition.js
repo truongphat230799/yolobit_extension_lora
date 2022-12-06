@@ -181,7 +181,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
         Blockly.Python.definitions_['import_machine'] = 'from yolobit_lorae32 import ebyteE32';
         Blockly.Python.definitions_['import_utime'] = 'import utime';
         // TODO: Assemble JavaScript into code variable.
-        var code = 'e32 = ebyteE32(tx ='+ tx + '.pin,' + 'rx =' + rx +'.pin, Address ='+ address + ', Channel='+channel+', debug = False)\n' + 'e32.start()\n';
+        var code = 'e32 = ebyteE32(tx_pin ='+ tx + '.pin,' + 'rx_pin =' + rx +'.pin, Address ='+ address + ', Channel='+channel+', debug = False)\n' + 'e32.start()\n';
         return code;
     };
 
