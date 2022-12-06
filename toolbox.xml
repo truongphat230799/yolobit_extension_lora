@@ -41,5 +41,6 @@
         </shadow>
       </value>
     </block>
+    <block type="yolobit_lora_check"/>
   </category>
 </xml>

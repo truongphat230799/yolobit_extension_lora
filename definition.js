@@ -277,3 +277,27 @@ Blockly.Blocks['yolobit_lora_create'] = {
         // TODO: Change ORDER_NONE to the correct strength.
         return [code, Blockly.Python.ORDER_NONE];
     };
+
+    Blockly.Blocks['yolobit_lora_check'] = {
+      init: function() {
+          this.jsonInit(
+            {
+              "type": "yolobit_lora_check",
+              "message0": "có dữ liệu gửi đến từ LoRa ?",
+              "output": null,
+              "colour": "#505170",
+              "tooltip": "",
+              "helpUrl": ""
+            }
+          );
+      }
+    };
+
+    Blockly.Python['yolobit_lora_check'] = function(block) {
+        Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
+        Blockly.Python.definitions_['import_machine'] = 'from yolobit_lorae32 import ebyteE32';
+      var code = "e32.recvMessage(from_address, from_channel, useChecksum=True)['msg'] != None";
+      // TODO: Change ORDER_NONE to the correct strength.
+      return [code, Blockly.Python.ORDER_NONE];
+    };
+
