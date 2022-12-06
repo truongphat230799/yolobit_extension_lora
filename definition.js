@@ -240,7 +240,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
             this.jsonInit(
                 {
                     "type": "yolobit_lora_receive",
-                    "message0": "hiện thông tin nhận được từ address %1 %2 channel %3 %4",
+                    "message0": "thông tin nhận được từ address %1 %2 channel %3 %4",
                     "args0": [
                           {
                             "type": "input_dummy",
