@@ -159,7 +159,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
               {
                 "type": "field_number",
                 "name": "ADDRESS",
-                "value": 1
               },
               {
                 "type": "input_dummy",
@@ -167,7 +166,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
               {
                 "type": "field_number",
                 "name": "CHANNEL",
-                "value": 2
               }
             ],
             "previousStatement": null,
@@ -213,7 +211,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
                       {
                         "type": "field_number",
                         "name": "ADDRESS",
-                        "value": 1
                       },
                       {
                         "type": "input_dummy",
@@ -221,7 +218,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
                       {
                         "type": "field_number",
                         "name": "CHANNEL",
-                        "value": 2
                       }
                     ],
                     "previousStatement": null,
@@ -255,7 +251,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
                           {
                             "type": "field_number",
                             "name": "ADDRESS",
-                            "value": 1
                           },
                           {
                             "type": "input_dummy",
@@ -263,7 +258,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
                           {
                             "type": "field_number",
                             "name": "CHANNEL",
-                            "value": 2
                           }
                     ],
                     "output": null,
@@ -297,7 +291,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
                 {
                   "type": "field_number",
                   "name": "ADDRESS",
-                  "value": 1
                 },
                 {
                   "type": "input_dummy",
@@ -305,7 +298,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
                 {
                   "type": "field_number",
                   "name": "CHANNEL",
-                  "value": 2
                 }
               ],
               "output": null,
