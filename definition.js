@@ -222,7 +222,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
         var to_address = block.getFieldValue('ADDRESS');
         var to_channel = block.getFieldValue('CHANNEL');
         // TODO: Assemble Python into code variable.
-        var code = 'e32.sendMessage('+to_address+','+ to_channel+',"'+ message+'", useChecksum=True)';
+        var code = "e32.sendMessage("+to_address+","+ to_channel+", { 'msg:'"+ message+"}, useChecksum=True)";
         return code;
     };
 
