@@ -283,7 +283,23 @@ Blockly.Blocks['yolobit_lora_create'] = {
           this.jsonInit(
             {
               "type": "yolobit_lora_check",
-              "message0": "có dữ liệu gửi đến từ LoRa ?",
+              "message0": "có dữ liệu gửi đến LoRa từ address %1 %2 channel %3 %4 ?",
+              "args0": [
+                {
+                  "type": "input_dummy",
+                },
+                {
+                  "type": "input_value",
+                  "name": "ADDRESS",
+                },
+                {
+                  "type": "input_dummy",
+                },
+                {
+                  "type": "input_value",
+                  "name": "CHANNEL",
+                }
+              ],
               "output": null,
               "colour": "#505170",
               "tooltip": "",
@@ -294,9 +310,11 @@ Blockly.Blocks['yolobit_lora_create'] = {
     };
 
     Blockly.Python['yolobit_lora_check'] = function(block) {
-        Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
-        Blockly.Python.definitions_['import_machine'] = 'from yolobit_lorae32 import ebyteE32';
-      var code = "e32.recvMessage(from_address, from_channel, useChecksum=True)['msg'] != None";
+      var from_address = block.getFieldValue('address');
+      var from_channel = block.getFieldValue('channel');
+      Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
+      Blockly.Python.definitions_['import_machine'] = 'from yolobit_lorae32 import ebyteE32';
+      var code = "e32.recvMessage(" + from_address+ ","+ from_channel +", useChecksum=True)['msg'] != None";
       // TODO: Change ORDER_NONE to the correct strength.
       return [code, Blockly.Python.ORDER_NONE];
     };
