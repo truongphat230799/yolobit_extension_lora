@@ -181,8 +181,8 @@ Blockly.Blocks['yolobit_lora_create'] = {
     Blockly.Python['yolobit_lora_create'] = function(block) {
         var tx = block.getFieldValue('tx');
         var rx = block.getFieldValue('rx');
-        var address = block.getFieldValue('address');
-        var channel = block.getFieldValue('channel');
+        var address = block.getFieldValue('ADDRESS');
+        var channel = block.getFieldValue('CHANNEL');
         Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
         Blockly.Python.definitions_['import_machine'] = 'from yolobit_lorae32 import ebyteE32';
         Blockly.Python.definitions_['import_utime'] = 'import utime';
@@ -231,8 +231,8 @@ Blockly.Blocks['yolobit_lora_create'] = {
     };
     Blockly.Python['yolobit_lora_send'] = function(block) {
         var message = Blockly.Python.valueToCode(block, 'MESSAGE', Blockly.Python.ORDER_ATOMIC);
-        var to_address = block.getFieldValue('address');
-        var to_channel = block.getFieldValue('channel');
+        var to_address = block.getFieldValue('ADDRESS');
+        var to_channel = block.getFieldValue('CHANNEL');
         // TODO: Assemble Python into code variable.
         var code = 'e32.sendMessage('+to_address+','+ to_channel+','+ message+', useChecksum=True)';
         return code;
@@ -270,8 +270,8 @@ Blockly.Blocks['yolobit_lora_create'] = {
     };
 
     Blockly.Python['yolobit_lora_receive'] = function(block) {
-        var from_address = block.getFieldValue('address');
-        var from_channel = block.getFieldValue('channel');
+        var from_address = block.getFieldValue('ADDRESS');
+        var from_channel = block.getFieldValue('CHANNEL');
         // TODO: Assemble Python into code variable.
         var code = 'e32.recvMessage(' +from_address + ',' + from_channel + ', useChecksum=True)';
         // TODO: Change ORDER_NONE to the correct strength.
@@ -310,8 +310,8 @@ Blockly.Blocks['yolobit_lora_create'] = {
     };
 
     Blockly.Python['yolobit_lora_check'] = function(block) {
-      var from_address = block.getFieldValue('address');
-      var from_channel = block.getFieldValue('channel');
+      var from_address = block.getFieldValue('ADDRESS');
+      var from_channel = block.getFieldValue('CHANNEL');
       Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
       Blockly.Python.definitions_['import_machine'] = 'from yolobit_lorae32 import ebyteE32';
       var code = "e32.recvMessage(" + from_address+ ","+ from_channel +", useChecksum=True)['msg'] != None";
