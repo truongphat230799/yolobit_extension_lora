@@ -1,3 +1,4 @@
+
 #######################################################################
 # MicroPython class for EBYTE E32 Series LoRa modules which are based
 # on SEMTECH SX1276/SX1278 chipsets and are available for 170, 433, 470,
@@ -111,6 +112,7 @@ class ebyteE32:
     TXPOWER = { 0b00:['20dBm', '27dBm', '30dBm'],
                 0b01:['17dBm', '24dBm', '27dBm'],
                 0b10:['14dBm', '21dBm', '24dBm'],
+
                 0b11:['10dBm', '18dBm', '21dBm'] }
     
 
@@ -131,11 +133,16 @@ class ebyteE32:
         self.config['wutime'] = 0                  # wakeup time from sleep mode (default 0 = 250ms)
         self.config['fec'] = 1                     # forward error correction (default 1 = on)
         self.config['txpower'] = 0                 # transmission power (default 0 = 20dBm/100mW)
+        # 
+        #self.PinM0 = PinM0                         # M0 pin number
+        #self.PinM1 = PinM1                         # M1 pin number
+        #self.PinAUX = PinAUX                       # AUX pin number
         
         self.tx_pin = tx_pin
-        self.rx_pin = rx_pin                           
-        self.PinAUX = PinAUX                       # instance for AUX Pin (device status : 0=busy - 1=idle)
-        self.AUX = None 
+        self.rx_pin = rx_pin
+        #self.M0 = None                             # instance for M0 Pin (set operation mode)
+        #self.M1 = None                             # instance for M1 Pin (set operation mode)
+        #self.AUX = None                            # instance for AUX Pin (device status : 0=busy - 1=idle)
         self.serdev = None                         # instance for UART
         self.debug = debug
         
@@ -145,7 +152,7 @@ class ebyteE32:
         try:
             # check parameters
             if int(self.config['model'].split('T')[0]) not in ebyteE32.FREQ:
-                self.config['model'] = '433T20D'
+                self.config['model'] = '868T20D'
             if self.config['port'] not in ebyteE32.PORT:
                 self.config['port'] = 'U1'
             if int(self.config['baudrate']) not in ebyteE32.BAUDRATE:    
@@ -154,6 +161,7 @@ class ebyteE32:
                 self.config['parity'] = '8N1'
             if self.config['datarate'] not in ebyteE32.DATARATE:
                 self.config['datarate'] = '2.4k'
+
             if self.config['channel'] > 31:
                 self.config['channel'] = 31
             # make UART instance
@@ -164,9 +172,13 @@ class ebyteE32:
             self.serdev.init(baudrate=self.config['baudrate'], bits=8, parity=par, stop=1)
             if self.debug:
                 print(self.serdev)
-            #print(self.M0, self.M1, self.AUX)
+            # make operation mode & device status instances
+            #self.M0 = Pin(self.PinM0, Pin.OUT)
+            #self.M1 = Pin(self.PinM1, Pin.OUT)
+            #self.AUX = Pin(self.PinAUX, Pin.IN, Pin.PULL_UP)
+            #if self.debug:
+                #print(self.M0, self.M1, self.AUX)
             # set config to the ebyte E32 LoRa module
-            self.AUX = Pin(self.PinAUX, Pin.IN, Pin.PULL_UP)
             self.setConfig('setConfigPwrDwnSave')
             return "OK"
         
@@ -208,13 +220,14 @@ class ebyteE32:
             js_payload = ujson.dumps(payload)     # convert payload to JSON string 
             for i in range(len(js_payload)):      # message
                 msg.append(ord(js_payload[i]))    # ascii code of character
+
             if useChecksum:                       # attach 2's complement checksum
                 msg.append(int(self.calcChecksum(js_payload), 16))
             # debug
             if self.debug:
                 print(msg)
             # wait for idle module
-            self.waitForDeviceIdle()
+            #self.waitForDeviceIdle()
             # send the message
             self.serdev.write(bytes(msg))
             return "OK"
@@ -442,6 +455,7 @@ class ebyteE32:
         bits += str(self.config['fec'])
         bits += '{0:02b}'.format(self.config['txpower'])
         message.append(int(bits))
+
         return message
     
 
@@ -463,20 +477,6 @@ class ebyteE32:
         maxp = ebyteE32.MAXPOW.get(self.config['model'][3:6], 0)
         print('TX power    \t%s'%(ebyteE32.TXPOWER.get(self.config['txpower'])[maxp]))
         print('================================================')
-
-
-    def waitForDeviceIdle(self):
-        ''' Wait for the E32 LoRa module to become idle (AUX pin high) '''
-        count = 0
-        # loop for device busy
-        while not self.AUX.value():
-            # increment count
-            count += 1
-            # maximum wait time 100 ms
-            if count == 10:
-                break
-            # sleep for 10 ms
-            utime.sleep_ms(10)
             
             
     def saveConfigToJson(self):
@@ -542,6 +542,10 @@ class ebyteE32:
         ''' Set operation mode of the E32 LoRa module '''
         # get operation mode settings (default normal)
         bits = ebyteE32.OPERMODE.get(mode, '00')
+
         # set operation mode
+        #self.M0.value(int(bits[0]))
+        #self.M1.value(int(bits[1]))
         # wait a moment
         utime.sleep_ms(50)
+
