@@ -143,7 +143,7 @@ class ebyteE32:
         try:
             # check parameters
             if int(self.config['model'].split('T')[0]) not in ebyteE32.FREQ:
-                self.config['model'] = '868T20D'
+                self.config['model'] = '433T20D'
             if self.config['port'] not in ebyteE32.PORT:
                 self.config['port'] = 'U1'
             if int(self.config['baudrate']) not in ebyteE32.BAUDRATE:    

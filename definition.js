@@ -183,8 +183,11 @@ Blockly.Blocks['yolobit_lora_create'] = {
         var rx = block.getFieldValue('rx');
         var address = block.getFieldValue('address');
         var channel = block.getFieldValue('channel');
+        Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
+        Blockly.Python.definitions_['import_machine'] = 'from yolobit_lorae32 import ebyteE32';
+        Blockly.Python.definitions_['import_utime'] = 'import utime';
         // TODO: Assemble JavaScript into code variable.
-        var code = '...;\n';
+        var code = 'e32 = ebyteE32(tx ='+ tx + '.pin,' + 'rx =' + rx +'.pin, Address ='+ address + ', Channel='+channel+', debug = False)\n' + 'e32.start()\n';
         return code;
     };
 
@@ -228,10 +231,10 @@ Blockly.Blocks['yolobit_lora_create'] = {
     };
     Blockly.Python['yolobit_lora_send'] = function(block) {
         var msg = Blockly.Python.valueToCode(block, 'MESSAGE', Blockly.Python.ORDER_ATOMIC);
-        var text_address = block.getFieldValue('address');
-        var text_channel = block.getFieldValue('channel');
+        var to_address = block.getFieldValue('address');
+        var to_channel = block.getFieldValue('channel');
         // TODO: Assemble Python into code variable.
-        var code = '...\n';
+        var code = 'e32.sendMessage('+to_address+','+ to_channel+','+ message+', useChecksum=True)';
         return code;
     };
 
@@ -267,10 +270,10 @@ Blockly.Blocks['yolobit_lora_create'] = {
     };
 
     Blockly.Python['yolobit_lora_receive'] = function(block) {
-        var text_address = block.getFieldValue('address');
-        var text_channel = block.getFieldValue('channel');
+        var from_address = block.getFieldValue('address');
+        var from_channel = block.getFieldValue('channel');
         // TODO: Assemble Python into code variable.
-        var code = '...';
+        var code = 'e32.recvMessage(' +from_address + ',' + from_channel + ', useChecksum=True)';
         // TODO: Change ORDER_NONE to the correct strength.
         return [code, Blockly.Python.ORDER_NONE];
     };
