@@ -252,8 +252,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
     };
 
     Blockly.Python['yolobit_lora_receive'] = function(block) {
-        var from_address = block.getFieldValue('ADDRESS');
-        var from_channel = block.getFieldValue('CHANNEL');
         // TODO: Assemble Python into code variable.
         var code = "e32.received_data['msg']";
         // TODO: Change ORDER_NONE to the correct strength.
