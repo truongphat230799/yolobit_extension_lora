@@ -29,8 +29,7 @@
         </shadow>
       </value>
     </block>
-    <block type="yolobit_lora_receive">
-    </block>
+    <block type="yolobit_lora_receive"/>
     <block type="yolobit_lora_check">
     <value name="ADDRESS">
         <shadow type="math_number">
