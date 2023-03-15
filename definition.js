@@ -232,16 +232,6 @@ Blockly.Blocks['yolobit_lora_create'] = {
                 {
                     "type": "yolobit_lora_receive",
                     "message0": "thông tin nhận được ",
-                    "args0": [
-                          {
-                            "type": "field_number",
-                            "name": "ADDRESS",
-                          },
-                          {
-                            "type": "field_number",
-                            "name": "CHANNEL",
-                          }
-                    ],
                     "output": null,
                     "colour": "#505170",
                     "tooltip": "",
