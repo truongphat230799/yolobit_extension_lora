@@ -116,7 +116,7 @@ class ebyteE32:
                 0b11:['10dBm', '18dBm', '21dBm'] }
     
 
-    def __init__(self, tx_pin, rx_pin, Model='868T20D', Port='U1', Baudrate=9600, Parity='8N1', AirDataRate='2.4k', Address=0x0000, Channel=0x06, debug=False):
+    def __init__(self, tx_pin, rx_pin, Model='433T20S', Port='U1', Baudrate=9600, Parity='8N1', AirDataRate='2.4k', Address=0x0000, Channel=0x06, debug=False):
         ''' constructor for ebyte E32 LoRa module '''
         # configuration in dictionary
         self.config = {}
@@ -136,15 +136,16 @@ class ebyteE32:
         self.tx_pin = tx_pin
         self.rx_pin = rx_pin
         self.serdev = None                         # instance for UART
+        self.received_data = None
         self.debug = debug
-        
+    
 
     def start(self):
         ''' Start the ebyte E32 LoRa module '''
         try:
             # check parameters
             if int(self.config['model'].split('T')[0]) not in ebyteE32.FREQ:
-                self.config['model'] = '868T20D'
+                self.config['model'] = '433T20S'
             if self.config['port'] not in ebyteE32.PORT:
                 self.config['port'] = 'U1'
             if int(self.config['baudrate']) not in ebyteE32.BAUDRATE:    
@@ -165,8 +166,9 @@ class ebyteE32:
                 print(self.serdev)
             # make operation mode & device status instances
             # set config to the ebyte E32 LoRa module
-            self.setConfig('setConfigPwrDwnSave')
+            #self.setConfig('setConfigPwrDwnSave')
             return "OK"
+        
         
         except Exception as E:
             if self.debug:
@@ -255,7 +257,8 @@ class ebyteE32:
             # did we receive anything ?
             if js_payload == None:
                 # nothing
-                return { 'msg':None }
+                self.received_data = None
+                return self.received_data
             else :
                 # decode message
                 msg = ''
@@ -272,14 +275,18 @@ class ebyteE32:
                         msg = msg[:-1]
                 # JSON to dictionary
                 message = ujson.loads(msg)
-                return message
+                if message != None and message['msg'] != None :
+                    self.received_data = message 
+                else:
+                    self.received_data = None
+                return self.received_data['msg']
         
         except Exception as E:
             if self.debug:
                 print('Error on recvMessage: ',E)
             return "NOK"
-
     
+ 
     def calcChecksum(self, payload):
         ''' Calculates checksum for sending/receiving payloads. Sums the ASCII character values mod256 and returns
             the lower byte of the two's complement of that value in hex notation. '''
@@ -552,4 +559,5 @@ class ebyteE32:
         #self.M1.value(int(bits[1]))
         # wait a moment
         utime.sleep_ms(50)
+
 

@@ -3,7 +3,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
       this.jsonInit(
         {
             "type": "start",
-            "message0": "khởi tạo Lora E32 chân TX %1 chân RX %2 address %3 channel %4",
+            "message0": "khởi tạo Lora E32 TX %1 RX %2 address %3 channel %4",
             "args0": [
               {
                 "type": "field_dropdown",
@@ -231,7 +231,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
             this.jsonInit(
                 {
                     "type": "yolobit_lora_receive",
-                    "message0": "thông tin nhận được từ address %1 channel %2",
+                    "message0": "thông tin nhận được ",
                     "args0": [
                           {
                             "type": "field_number",
@@ -255,7 +255,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
         var from_address = block.getFieldValue('ADDRESS');
         var from_channel = block.getFieldValue('CHANNEL');
         // TODO: Assemble Python into code variable.
-        var code = 'e32.recvMessage(' +from_address + ',' + from_channel + ', useChecksum=True)\n';
+        var code = "e32.received_data['msg']";
         // TODO: Change ORDER_NONE to the correct strength.
         return [code, Blockly.Python.ORDER_NONE];
     };
@@ -265,7 +265,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
           this.jsonInit(
             {
               "type": "yolobit_lora_check",
-              "message0": "có dữ liệu gửi đến LoRa từ address %1 channel %2 ?",
+              "message0": "có dữ liệu gửi đến từ address %1 channel %2 ?",
               "args0": [
                 {
                   "type": "field_number",
@@ -290,7 +290,7 @@ Blockly.Blocks['yolobit_lora_create'] = {
       var from_channel = block.getFieldValue('CHANNEL');
       Blockly.Python.definitions_['import_yolobit'] = 'from yolobit import *';
       Blockly.Python.definitions_['import_machine'] = 'from yolobit_lorae32 import ebyteE32';
-      var code = "e32.recvMessage(" + from_address+ ","+ from_channel +", useChecksum=True)['msg'] != None";
+      var code = "e32.recvMessage(" + from_address+ ","+ from_channel +", useChecksum=True)!= None";
       // TODO: Change ORDER_NONE to the correct strength.
       return [code, Blockly.Python.ORDER_NONE];
     };
