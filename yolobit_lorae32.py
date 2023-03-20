@@ -523,7 +523,7 @@ class ebyteE32:
         ''' Set the transmission mode of the E32 LoRa module '''
         if transmode != self.config['transmode']:
             self.config['transmode'] = transmode
-            self.setConfig('setConfigPwrDwnSave')
+            #self.setConfig('setConfigPwrDwnSave')
             
             
     def setConfig(self, save_cmd):
