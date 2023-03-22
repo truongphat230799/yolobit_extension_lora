@@ -116,7 +116,7 @@ class ebyteE32:
                 0b11:['10dBm', '18dBm', '21dBm'] }
     
 
-    def __init__(self, tx_pin, rx_pin, Model='433T20S', Port='U1', Baudrate=9600, Parity='8N1', AirDataRate='2.4k', Address=0x0000, Channel=0x06, debug=False):
+    def __init__(self, PinM0 = None, PinM1 = None, tx_pin , rx_pin, Model='433T20S', Port='U1', Baudrate=9600, Parity='8N1', AirDataRate='2.4k', Address=0x0000, Channel=0x06, debug=False):
         ''' constructor for ebyte E32 LoRa module '''
         # configuration in dictionary
         self.config = {}
@@ -135,6 +135,10 @@ class ebyteE32:
         self.config['txpower'] = 0                 # transmission power (default 0 = 20dBm/100mW)
         self.tx_pin = tx_pin
         self.rx_pin = rx_pin
+        self.PinM0 = PinM0                         # M0 pin number
+        self.PinM1 = PinM1                         # M1 pin number
+        self.M0 = None                             # instance for M0 Pin (set operation mode)
+        self.M1 = None                             # instance for M1 Pin (set operation mode)
         self.serdev = None                         # instance for UART
         self.received_data = None
         self.debug = debug
@@ -165,6 +169,9 @@ class ebyteE32:
             if self.debug:
                 print(self.serdev)
             # make operation mode & device status instances
+            # make operation mode & device status instances
+            self.M0 = Pin(self.PinM0, Pin.OUT)
+            self.M1 = Pin(self.PinM1, Pin.OUT)
             # set config to the ebyte E32 LoRa module
             #self.setConfig('setConfigPwrDwnSave')
             return "OK"
@@ -246,7 +253,7 @@ class ebyteE32:
                 # only the module with the target address and channel will receive the message
                 self.setTransmissionMode(1)
             # put into normal mode
-            #self.setOperationMode('normal')
+            self.setOperationMode('normal')
             self.M0 = 0
             self.M1 = 0
             # receive message
@@ -555,8 +562,8 @@ class ebyteE32:
         # get operation mode settings (default normal)
         bits = ebyteE32.OPERMODE.get(mode, '00')
         # set operation mode
-        #self.M0.value(int(bits[0]))
-        #self.M1.value(int(bits[1]))
+        self.M0.value(int(bits[0]))
+        self.M1.value(int(bits[1]))
         # wait a moment
         utime.sleep_ms(50)
 
