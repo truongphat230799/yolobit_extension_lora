@@ -116,7 +116,7 @@ class ebyteE32:
                 0b11:['10dBm', '18dBm', '21dBm'] }
     
 
-    def __init__(self, PinM0 = None, PinM1 = None, tx_pin , rx_pin, Model='433T20S', Port='U1', Baudrate=9600, Parity='8N1', AirDataRate='2.4k', Address=0x0000, Channel=0x06, debug=False):
+    def __init__(self, tx_pin , rx_pin, Model='433T20S', Port='U1', Baudrate=9600, Parity='8N1', AirDataRate='2.4k', Address=0x0000, Channel=0x06, debug=False):
         ''' constructor for ebyte E32 LoRa module '''
         # configuration in dictionary
         self.config = {}
@@ -133,10 +133,10 @@ class ebyteE32:
         self.config['wutime'] = 0                  # wakeup time from sleep mode (default 0 = 250ms)
         self.config['fec'] = 1                     # forward error correction (default 1 = on)
         self.config['txpower'] = 0                 # transmission power (default 0 = 20dBm/100mW)
+        self.PinM0 = None                         # M0 pin number
+        self.PinM1 = None                         # M1 pin number
         self.tx_pin = tx_pin
         self.rx_pin = rx_pin
-        self.PinM0 = PinM0                         # M0 pin number
-        self.PinM1 = PinM1                         # M1 pin number
         self.M0 = None                             # instance for M0 Pin (set operation mode)
         self.M1 = None                             # instance for M1 Pin (set operation mode)
         self.serdev = None                         # instance for UART
